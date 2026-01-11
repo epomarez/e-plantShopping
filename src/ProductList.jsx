@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
-import addItem from './CartSlice';
+import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -299,8 +299,9 @@ function ProductList({ onHomeClick }) {
                                         <div className="product-price">{plant.cost}</div>
                                         <button className="product-button"
                                             onClick={() => handleAddToCart(plant)}
+                                            disabled={addedToCart[plant.name]}
                                         >
-                                            Add to cart.
+                                            {addedToCart[plant.name] ? "Added to cart" : "Add to cart"}
                                         </button>
                                     </div>
                                 ))}
